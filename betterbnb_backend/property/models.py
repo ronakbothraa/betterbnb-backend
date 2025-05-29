@@ -12,6 +12,7 @@ class Property(models.Model):
     host = models.ForeignKey(User, on_delete=models.CASCADE, related_name='properties')
     title = models.CharField(max_length=255)
     description = models.TextField()
+    category = models.CharField(default="Apartment")
 
     latitude = models.DecimalField(max_digits=9, decimal_places=6)
     longitude = models.DecimalField(max_digits=9, decimal_places=6)
@@ -19,8 +20,11 @@ class Property(models.Model):
     country_code = models.CharField(max_length=20)
 
     price_per_night = models.DecimalField(max_digits=10, decimal_places=2)
-    available_from = models.DateField()
-    available_to = models.DateField()
+    guests = models.CharField(default="1")
+    bedrooms = models.CharField(default="1")
+    bathrooms = models.CharField(default="1")
+    available_from = models.DateField(null=True, blank=True)
+    available_to = models.DateField(null=True, blank=True)
 
     image = models.ImageField(upload_to='uploads/properties/')
     
