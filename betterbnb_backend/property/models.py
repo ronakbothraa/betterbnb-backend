@@ -6,7 +6,6 @@ from django.db import models
 from useraccount.models import User
 
 # Create your models here.
-
 class Property(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     host = models.ForeignKey(User, on_delete=models.CASCADE, related_name='properties')
@@ -39,7 +38,7 @@ class Property(models.Model):
 
 class Reservation(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    property = models.ForeignKey(Property, on_delete=models.CASCADE, related_name="reservatiions")
+    property = models.ForeignKey(Property, on_delete=models.CASCADE, related_name="reservations")
     start_date = models.DateField()
     end_date = models.DateField()
     guests = models.IntegerField(default=1)
