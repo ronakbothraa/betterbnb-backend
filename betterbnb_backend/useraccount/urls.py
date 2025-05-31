@@ -12,4 +12,5 @@ urlpatterns = [
     path("login/", LoginView.as_view(), name="rest_login"),
     path("logout/", LogoutView.as_view(), name="rest_logout"),
     path("<uuid:pk>/", api.host_detail, name="api_host_detail"),
+    path("reservations/", api.reservations_list, name="api_reservations_list"),
 ]
