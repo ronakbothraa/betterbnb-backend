@@ -12,6 +12,15 @@ from .serializers import PropertiesListSerializer, PropertyDetailSerializer, Pro
 @permission_classes([])
 def properties_list(request):
     properties = Property.objects.all()
+
+    host_id = request.GET.get("host_id", "")
+
+    if host_id:
+        try:
+            properties = properties.filter(host__id=host_id)
+        except ValueError:
+            return JsonResponse({"error": "Invalid host ID"}, status=400)
+
     serializer = PropertiesListSerializer(properties, many=True)
     return JsonResponse({
         "data": serializer.data,

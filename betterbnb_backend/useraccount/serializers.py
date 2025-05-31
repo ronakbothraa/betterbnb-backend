@@ -9,5 +9,6 @@ class UserDetailSerializer(serializers.ModelSerializer):
         fields = [
             'id',
             'name',
+            'email',
             'avatar_url',
         ]
