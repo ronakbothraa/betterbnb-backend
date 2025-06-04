@@ -12,7 +12,11 @@ class Conversation(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"Conversation {self.id} with {self.user.username}"
+        users = self.user.all()
+        if users.exists():
+            usernames = ", ".join([user.name or user.email for user in users])
+            return f"Conversation {self.id} with {usernames}"
+        return f"Conversation {self.id} (no users)"
     
 
 class ConversationMessage(models.Model):
