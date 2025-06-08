@@ -57,7 +57,6 @@ def property_reservation_detail(request, pk):
         "data": serializer.data,
     })
 
-
 @api_view(['POST'])
 def create_property(request):
     form = PropertyForm(request.POST, request.FILES)

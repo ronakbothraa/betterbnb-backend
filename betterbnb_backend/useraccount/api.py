@@ -12,7 +12,6 @@ from .models import User
 @authentication_classes([])
 @permission_classes([])
 def host_detail(request, pk):
-
     try:
         user = User.objects.get(pk=pk)
     except User.DoesNotExist:
@@ -20,6 +19,7 @@ def host_detail(request, pk):
 
     serializer = UserDetailSerializer(user)
     return JsonResponse(serializer.data, safe=False)
+
 
 @api_view(['GET'])
 def reservations_list(request):
